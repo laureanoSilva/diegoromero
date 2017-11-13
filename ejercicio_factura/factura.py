@@ -3,6 +3,8 @@ Created on 4 nov. 2017
 @author: Diego
 '''
 
+from datetime import datetime as dt
+
 def mostrarProductos(diccionario):
     for a in diccionario:
         print(a+"-> "+diccionario[a]["nombre"]+" - $"+str(diccionario[a]["precio"]))
@@ -13,6 +15,8 @@ def mostrarTicket(matriz):
     for a in range(0,len(matriz[0])):
         print(matriz[0][a]," - ",matriz[1][a]," - $",matriz[2][a])
         sumaTotalTicket = sumaTotalTicket + matriz[2][a]
+    if dt.weekday(dt.today()) == 0:
+	    sumaTotalTicket = sumaTotalTicket * .85
     print("Total: ",sumaTotalTicket)
 
 
@@ -28,12 +32,12 @@ ticket = [[],[],[]]
 termina = 'no'
 while termina == 'no':
     mostrarProductos(productos)
-    codigo = input("ingresar codigo de articulo")
-    cantidad = input("ingresar cantidad de articulo")
+    codigo = input("ingresar codigo de articulo: ")
+    cantidad = input("ingresar cantidad de articulo: ")
     ticket[0].append(int(cantidad))
     ticket[1].append(productos[codigo]["nombre"])
     ticket[2].append(int(cantidad)*productos[codigo]["precio"])
-    termina = input("termina? si/no")
+    termina = input("termina? si/no ")
 
 
 mostrarTicket(ticket)
